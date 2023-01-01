@@ -92,9 +92,9 @@ model = FSMTForConditionalGeneration.from_pretrained("./saved_model/translation_
 
 input = summarized_text
 
-input_ids = tokenizer.encode(input, return_tensors="pt")
+input_ids = tokenizer.encode(input, return_tensors="pt", max_length=200, truncation=True)
 
-outputs = model.generate(input_ids)
+outputs = model.generate(input_ids, max_new_tokens=200)
 
 decoded = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
